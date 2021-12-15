@@ -1,0 +1,35 @@
+.list-selection-message-queued {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  column-gap: 3%;
+  font-size: 15px;
+}
+
+input:checked + .ready {
+  background-color: #d34b4e;
+}
+
+input:focus + .ready {
+  box-shadow: 0 0 1px #d34b4e;
+}
+
+input:checked + .unacked {
+  background-color: #3ea753;
+}
+
+input:focus + .unacked {
+  box-shadow: 0 0 1px #3ea753;
+}
+
+input:checked + .total {
+  background-color: #e7a55c;
+}
+
+input:focus + .total {
+  box-shadow: 0 0 1px #e7a55c;
+}
+
+.count-message {
+  margin-top: 3px;
+}
