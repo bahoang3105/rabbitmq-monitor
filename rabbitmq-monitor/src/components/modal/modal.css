@@ -15,7 +15,7 @@
 }
 
 .border-modal {
-  border: 1px solid black;
+  border: 1px solid rgb(161, 161, 161);
   position: fixed;
   left: 35%;
   padding: 30px;
@@ -28,16 +28,31 @@
   position: absolute;
   color:rgb(151, 151, 151);
   font-size: 18px;
-  border-radius: 15px;
-  padding: 0 5px 0 5px;
+  border-radius: 100%;
+  padding: 0 7px 2px 7px;
   margin-left: 50vw;
   margin-top: -22px;
+  cursor: pointer;
+}
+
+.refresh {
+  position: absolute;
+  color:rgb(56, 92, 255);
+  font-size: 17px;
+  border-radius: 15px;
+  padding: 2px 2px 2px 2px;
+  margin-left: calc(50vw - 30px);
+  margin-top: -20px;
+  cursor: pointer;
+}
+
+.refresh:hover {
+  background-color: #b4afff;
 }
 
 .x-close:hover {
   background-color: rgb(202, 202, 202);
-  color: rgb(158, 158, 158);
-  cursor: pointer;
+  color: rgb(138, 138, 138);
 }
 
 .modal-buttons {
@@ -95,4 +110,23 @@
   position: absolute;
   right: 30px;
   margin-top: 30px;
+}
+
+.explain-icon {
+  border-radius: 5px;
+  background-color: #d4d4d4;
+  width: 15px;
+  text-align: center;
+  display: inline-block;
+  cursor: context-menu;
+}
+
+@keyframes rotate-refreshing {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(720deg); }
+}
+
+.refreshing {
+  animation: rotate-refreshing 2s;
+  cursor: default;
 }

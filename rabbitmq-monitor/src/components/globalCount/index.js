@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import FormAdd from "../modal/formAdd";
 import ModalGlobalCount from "../modal/ModalGlobalCount";
 import Table from "../modal/table/Table";
 import SeeMore from "./SeeMore";
@@ -116,14 +117,18 @@ const GlobalCount = (props) => {
           <td><SeeMore openModal={setShowedModal} typeModal='Channels' /></td>
           <td><SeeMore openModal={setShowedModal} typeModal='Exchanges' /></td>
           <td><SeeMore openModal={setShowedModal} typeModal='Queues' /></td>
-          <td><SeeMore openModal={setShowedModal} typeModal='Consumer' /></td>
+          <td><SeeMore openModal={setShowedModal} typeModal='Consumers' /></td>
         </tr>
       </Table>
       <>
         <ModalGlobalCount show={showedModal === 'Connections'} setShow={setShowedModal} typeModal='Connections' count={data.connections} dataHeader={dataHeaderConnections} />
         <ModalGlobalCount show={showedModal === 'Channels'} setShow={setShowedModal} typeModal='Channels' count={data.channels} dataHeader={dataHeaderChannels} />
-        <ModalGlobalCount show={showedModal === 'Exchanges'} setShow={setShowedModal} typeModal='Exchanges' count={data.exchanges} dataHeader={dataHeaderExchanges} />
-        <ModalGlobalCount show={showedModal === 'Queues'} setShow={setShowedModal} typeModal='Queues' count={data.queues} dataHeader={dataHeaderQueues} />
+        <ModalGlobalCount show={showedModal === 'Exchanges'} setShow={setShowedModal} typeModal='Exchanges' count={data.exchanges} dataHeader={dataHeaderExchanges}>
+          <FormAdd typeAdd='exchange' type={['direct', 'fanout', 'headers', 'topic']} />
+        </ModalGlobalCount>
+        <ModalGlobalCount show={showedModal === 'Queues'} setShow={setShowedModal} typeModal='Queues' count={data.queues} dataHeader={dataHeaderQueues}>
+          <FormAdd typeAdd='queue' type={['Classic', 'Quorum', 'Stream']} />
+        </ModalGlobalCount>
       </>
     </div>
   );

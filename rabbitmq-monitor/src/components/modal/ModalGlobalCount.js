@@ -8,12 +8,14 @@ import './modal.css';
 import Table from './table/Table';
 import TableHeader from './table/TableHeader';
 import TableRow from './table/TableRow';
+import { FiRefreshCw } from 'react-icons/fi';
 
 const ModalGlobalCount = (props) => {
 
   const itemPerPage = 5;
   const [page, setPage] = useState(1);
   const [data, setData] = useState();
+  const [refreshState, setRefreshState] = useState('');
 
   const getData = async () => {
     const { data } = await axios.get(`${API_URL}/${props.typeModal.toLowerCase()}?page=${page}&page_size=${itemPerPage}&name=&use_regex=false`, {
@@ -62,8 +64,34 @@ const ModalGlobalCount = (props) => {
         ]));
         break;
       }
+      case 'Queues': {
+        setData(data.items.map(item => [
+          item.name,
+          item.type,
+          '',
+          item.state,
+          item.messages_ready,
+          item.messages_unacknowledged,
+          item.messages,
+          item.message_stats ? item.message_stats.publish_details.rate : '',
+          item.message_stats ? item.message_stats.deliver_get_details.rate : '',
+          item.message_stats? item.message_stats.ack_details.rate : ''
+        ]));
+        break;
+      }
       default:
         return;
+    }
+  }
+
+  const refresh = async () => {
+    // do not allow continuous refreshing
+    if(refreshState !== ' refreshing') {
+      setRefreshState(' refreshing');
+      setTimeout(() => {
+        setRefreshState('');
+      }, 2000);
+      await getData();
     }
   }
 
@@ -83,7 +111,8 @@ const ModalGlobalCount = (props) => {
     >
       <div className='border-modal'>
         <Modal.Header>
-          <span className='x-close close-connections' onClick={() => props.setShow(false)}>x</span>
+          <FiRefreshCw className={`refresh${refreshState}`} title='Refresh' onClick={refresh}/>
+          <span className='x-close' onClick={() => props.setShow(false)}>x</span>
           <Modal.Title>
             {props.typeModal}
           </Modal.Title>
@@ -96,9 +125,10 @@ const ModalGlobalCount = (props) => {
             <Table width='50vw' maxHeight='35vh'>
               <TableRow data={props.dataHeader[0]} />
               <TableHeader data={props.dataHeader[1]} />
-              {data && data.map((item, index) => (<TableRow key={index} name={item[0]} data={item.slice(1)} style={{ backgroundColor: index % 2 ? 'white' : '#d6d6d6' }} />))}
+              {data && data.map((item, index) => (<TableRow key={index} name={item[0]} data={item.slice(1)} style={{ backgroundColor: index % 2 ? '' : '#d6d6d6' }} last={index === data.length - 1} />))}
             </Table>
           </div>
+          {props.children}
         </Modal.Body>
         <Modal.Footer>
           <PagePagination itemPerPage={itemPerPage} totalItem={props.count} page={page} setPage={setPage} />
