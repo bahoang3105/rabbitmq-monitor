@@ -18,7 +18,7 @@ const FormAdd = (props) => {
   const [type, setType] = useState(props.type[0]);
   const [durability, setDurability] = useState(true);
   const [autoDelete, setAutoDelete] = useState(false);
-  const [args, setArgs] = useState('{\n\n}');
+  const [args, setArgs] = useState('{\n\t\n}');
   const [internal, setInternal] = useState(false);
   const [displayFormAdd, setDisplayFormAdd] = useState(false);
   const [notice, setNotice] = useState('');
