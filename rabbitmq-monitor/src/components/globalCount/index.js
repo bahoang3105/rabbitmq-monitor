@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import FormAdd from "../../elements/formAdd";
 import ModalGlobalCount from "../../elements/modal/ModalGlobalCount";
 import Table from "../../elements/table/Table";
-import ExchangesModal from "../modalDetails/channelsModal";
-import SeeMore from "./SeeMore";
+import { ConnectionsModal, ChannelsModal, ExchangesModal, QueuesModal } from "../modalDetails/";
+import SeeMore from './SeeMore';
 
 const GlobalCount = (props) => {
 
@@ -82,6 +82,12 @@ const GlobalCount = (props) => {
     ]
   ];
 
+  const checkShowDetail = (str) => {
+    return showedModal ? showedModal.split(' ')[0] === str : false;
+  } 
+
+  const showedModalName = showedModal ? showedModal.split(' ')[1] : '';
+
   useEffect(() => {
     if(props.data) {
       setData(props.data.object_totals);
@@ -132,7 +138,10 @@ const GlobalCount = (props) => {
         </ModalGlobalCount>
       </>
       <>
-        <ExchangesModal show={showedModal ? showedModal.split(' ')[0] === 'Exchange:' : false} setShow={setShowedModal} typeModal={showedModal} />
+        {checkShowDetail('Connection:') && <ConnectionsModal show={checkShowDetail('Connection:')} exchangeName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
+        {checkShowDetail('Channel:') && <ChannelsModal show={checkShowDetail('Channel:')} exchangeName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
+        {checkShowDetail('Exchange:') && <ExchangesModal show={checkShowDetail('Exchange:')} exchangeName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
+        {checkShowDetail('Queue:') && <QueuesModal show={checkShowDetail('Queue:')} exchangeName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
       </>
     </div>
   );

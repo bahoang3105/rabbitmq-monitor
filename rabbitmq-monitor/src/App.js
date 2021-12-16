@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from 'axios';
+import { getAPI } from './api';
 import MessageRates from "./components/messageRates";
 import './app.css';
-import { API_URL } from "./URL";
-import { PASSWORD, USERNAME } from "./Auth";
 import MessageQueued from "./components/messageQueued";
 import GlobalCount from './components/globalCount';
 
@@ -21,12 +19,7 @@ const App = () => {
   }
 
   const getData = async () => {
-    const { data } = await axios.get(API_URL + '/overview', {
-      auth: {
-        username: USERNAME,
-        password: PASSWORD
-      }
-    });
+    const data = await getAPI('/overview');
     setData(data);
   }
 

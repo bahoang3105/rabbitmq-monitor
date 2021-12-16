@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import PagePagination from './pagePagination';
-import axios from 'axios';
-import { API_URL } from '../../URL';
-import { PASSWORD, USERNAME } from '../../Auth';
 import './modal.css';
 import Table from '../table/Table';
 import TableHeader from '../table/TableHeader';
 import TableRow from '../table/TableRow';
 import MyModal from './MyModal';
+import { getAPI } from '../../api';
 
 const ModalGlobalCount = (props) => {
 
@@ -17,12 +15,7 @@ const ModalGlobalCount = (props) => {
   const [data, setData] = useState();
 
   const getData = async () => {
-    const { data } = await axios.get(`${API_URL}/${props.typeModal.toLowerCase()}?page=${page}&page_size=${itemPerPage}&name=&use_regex=false`, {
-      auth: {
-        username: USERNAME,
-        password: PASSWORD
-      }
-    });
+    const data = await getAPI(`/${props.typeModal.toLowerCase()}?page=${page}&page_size=${itemPerPage}&name=&use_regex=false`);
     switch(props.typeModal) {
       case 'Connections': {
         setData(data.items.map(item => [

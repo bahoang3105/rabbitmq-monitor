@@ -1,7 +1,4 @@
-import axios from "axios";
 import { useState } from "react";
-import { PASSWORD, USERNAME } from "../../Auth";
-import { API_URL } from "../../URL";
 import AutoDelete from "./AutoDelete";
 import Durable from "./Durable";
 import './formAdd.css'
@@ -12,6 +9,7 @@ import Args from "./Args";
 import Notice from "./Notice";
 import Internal from "./Internal";
 import Submit from "./Submit";
+import { putAPI } from "../../api";
 
 const FormAdd = (props) => {
   const [name, setName] = useState('');
@@ -52,7 +50,7 @@ const FormAdd = (props) => {
         if(props.typeAdd === 'queue') {
           switch(type) {
             case 'Classic': {
-              const handleArgs = args === '' ? { "x-queue-type":"classic" } : {...JSON.parse(args), "x-queue-type":"classic" };
+              const handleArgs = args === '' ? {} : JSON.parse(args);
               data = {
                 auto_delete: false,
                 durable: true,
@@ -83,12 +81,7 @@ const FormAdd = (props) => {
           }
         }
 
-        await axios.put(API_URL + '/' + props.typeAdd + 's/%2F/' + name, data, {
-          auth: {
-            username: USERNAME,
-            password: PASSWORD
-          }
-        });
+        await putAPI('/' + props.typeAdd + 's/%2F/' + name, data);
         setNotice('');
         setName('');
       } catch (e) {

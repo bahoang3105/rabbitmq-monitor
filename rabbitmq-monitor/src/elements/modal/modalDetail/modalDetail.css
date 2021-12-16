@@ -1,0 +1,16 @@
+.modal-detail-part {
+  cursor: pointer;
+  margin-bottom: 10px;
+  color: rgb(83, 83, 83);
+  font-size: 17px;
+  width: fit-content;
+  display: flex;
+}
+
+.modal-detail-overview {
+  margin: 15px 0 15px 0;
+}
+
+.modal-detail-overview-body {
+  overflow: hidden;
+}
