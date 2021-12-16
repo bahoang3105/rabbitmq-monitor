@@ -5,17 +5,16 @@ import axios from 'axios';
 import { API_URL } from '../../URL';
 import { PASSWORD, USERNAME } from '../../Auth';
 import './modal.css';
-import Table from './table/Table';
-import TableHeader from './table/TableHeader';
-import TableRow from './table/TableRow';
-import { FiRefreshCw } from 'react-icons/fi';
+import Table from '../table/Table';
+import TableHeader from '../table/TableHeader';
+import TableRow from '../table/TableRow';
+import MyModal from './MyModal';
 
 const ModalGlobalCount = (props) => {
 
   const itemPerPage = 5;
   const [page, setPage] = useState(1);
   const [data, setData] = useState();
-  const [refreshState, setRefreshState] = useState('');
 
   const getData = async () => {
     const { data } = await axios.get(`${API_URL}/${props.typeModal.toLowerCase()}?page=${page}&page_size=${itemPerPage}&name=&use_regex=false`, {
@@ -84,17 +83,6 @@ const ModalGlobalCount = (props) => {
     }
   }
 
-  const refresh = async () => {
-    // do not allow continuous refreshing
-    if(refreshState !== ' refreshing') {
-      setRefreshState(' refreshing');
-      setTimeout(() => {
-        setRefreshState('');
-      }, 2000);
-      await getData();
-    }
-  }
-
   useEffect(() => {
     if(props.show) {
       getData();
@@ -103,38 +91,24 @@ const ModalGlobalCount = (props) => {
   }, [props.show, page]);
 
   return (
-    <Modal
-      show={props.show}
-      onHide={() => props.setShow(false)}
-      backdrop={true}
-      className='modal'
-    >
-      <div className='border-modal'>
-        <Modal.Header>
-          <FiRefreshCw className={`refresh${refreshState}`} title='Refresh' onClick={refresh}/>
-          <span className='x-close' onClick={() => props.setShow(false)}>x</span>
-          <Modal.Title>
-            {props.typeModal}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className='title-rename'>
-            All {props.typeModal.toLowerCase()}({props.count})
-          </div>
-          <div style={{ fontSize: 15 }}>
-            <Table width='50vw' maxHeight='35vh'>
-              <TableRow data={props.dataHeader[0]} />
-              <TableHeader data={props.dataHeader[1]} />
-              {data && data.map((item, index) => (<TableRow key={index} name={item[0]} data={item.slice(1)} style={{ backgroundColor: index % 2 ? '' : '#d6d6d6' }} last={index === data.length - 1} />))}
-            </Table>
-          </div>
-          {props.children}
-        </Modal.Body>
-        <Modal.Footer>
-          <PagePagination itemPerPage={itemPerPage} totalItem={props.count} page={page} setPage={setPage} />
-        </Modal.Footer>
-      </div>
-    </Modal>
+    <MyModal show={props.show} setShow={props.setShow} getData={getData} typeModal={props.typeModal}>
+      <Modal.Body>
+        <div className='title-rename'>
+          All {props.typeModal.toLowerCase()}({props.count})
+        </div>
+        <div style={{ fontSize: 15 }}>
+          <Table width='50vw' maxHeight='35vh'>
+            <TableRow data={props.dataHeader[0]} />
+            <TableHeader data={props.dataHeader[1]} />
+            {data && data.map((item, index) => (<TableRow key={index} name={item[0]} typeModal={props.typeModal} data={item.slice(1)} setShow={props.setShow} style={{ backgroundColor: index % 2 ? '' : '#d6d6d6' }} last={index === data.length - 1} />))}
+          </Table>
+        </div>
+        {props.children}
+      </Modal.Body>
+      <Modal.Footer>
+        <PagePagination itemPerPage={itemPerPage} totalItem={props.count} page={page} setPage={setPage} />
+      </Modal.Footer>
+    </MyModal>
   );
 }
 

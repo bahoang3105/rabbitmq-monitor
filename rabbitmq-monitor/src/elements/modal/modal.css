@@ -130,3 +130,11 @@
   animation: rotate-refreshing 2s;
   cursor: default;
 }
+
+.name-row-more-info {
+  cursor: pointer;
+}
+
+.name-row-more-info:hover {
+  color: #443fa5;
+}

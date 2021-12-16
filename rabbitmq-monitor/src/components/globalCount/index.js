@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import FormAdd from "../modal/formAdd";
-import ModalGlobalCount from "../modal/ModalGlobalCount";
-import Table from "../modal/table/Table";
+import FormAdd from "../../elements/formAdd";
+import ModalGlobalCount from "../../elements/modal/ModalGlobalCount";
+import Table from "../../elements/table/Table";
+import ExchangesModal from "../modalDetails/channelsModal";
 import SeeMore from "./SeeMore";
 
 const GlobalCount = (props) => {
@@ -129,6 +130,9 @@ const GlobalCount = (props) => {
         <ModalGlobalCount show={showedModal === 'Queues'} setShow={setShowedModal} typeModal='Queues' count={data.queues} dataHeader={dataHeaderQueues}>
           <FormAdd typeAdd='queue' type={['Classic', 'Quorum', 'Stream']} />
         </ModalGlobalCount>
+      </>
+      <>
+        <ExchangesModal show={showedModal ? showedModal.split(' ')[0] === 'Exchange:' : false} setShow={setShowedModal} typeModal={showedModal} />
       </>
     </div>
   );

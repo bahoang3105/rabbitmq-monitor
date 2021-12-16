@@ -1,8 +1,19 @@
 const TableRow = (props) => {
+
+  const changeModalDetail = () => {
+    props.setShow(props.typeModal.substring(0, props.typeModal.length - 1) + ': ' + props.name);
+  }
+
   return (
     <>
       {(props?.data.length > 0 || props?.name) && <tr style={props.style}>
-        {props?.name && <th style={{  borderBottomLeftRadius: props.last ? 15 : 0 }}>{props.name}</th>}
+        {props?.name && 
+          <th style={{  borderBottomLeftRadius: props.last ? 15 : 0 }}>
+            <label className="name-row-more-info" onClick={changeModalDetail}>
+              {props.name}
+            </label>
+          </th>
+        }
         {props?.data.length > 0 && props?.data.map((td, index) => (
           <td 
             key={index} 

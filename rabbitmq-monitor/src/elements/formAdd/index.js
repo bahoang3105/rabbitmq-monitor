@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
-import { PASSWORD, USERNAME } from "../../../Auth";
-import { API_URL } from "../../../URL";
+import { PASSWORD, USERNAME } from "../../Auth";
+import { API_URL } from "../../URL";
 import AutoDelete from "./AutoDelete";
 import Durable from "./Durable";
 import './formAdd.css'

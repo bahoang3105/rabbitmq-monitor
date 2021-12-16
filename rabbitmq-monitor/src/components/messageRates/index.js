@@ -1,4 +1,4 @@
-import Chart from "../../chart/Chart";
+import Chart from "../../elements/chart/Chart";
 import { Line, Tooltip, XAxis, YAxis } from "recharts";
 import { useEffect, useState } from "react";
 import ListSelection from "./ListSelection";
