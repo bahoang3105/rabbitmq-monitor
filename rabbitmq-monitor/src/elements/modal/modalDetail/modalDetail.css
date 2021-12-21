@@ -7,10 +7,28 @@
   display: flex;
 }
 
-.modal-detail-overview {
-  margin: 15px 0 15px 0;
+.modal-detail-part:hover {
+  color:rgb(39, 39, 39);
 }
 
-.modal-detail-overview-body {
+.modal-detail {
+  margin: 15px 0 15px 15px;
+}
+
+.modal-detail-body {
   overflow: hidden;
+}
+
+.delete-button {
+  border-radius: 5px;
+  background-color: rgb(99, 99, 99);
+  width: fit-content;
+  padding: 6px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: rgb(46, 46, 46);
 }

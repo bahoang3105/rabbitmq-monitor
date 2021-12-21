@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { getAPI } from '../../../api';
-import { Overview, Bindings } from '../../../elements/modal/modalDetail/';
+import { Overview, Bindings, Delete, PublishMessage } from '../../../elements/modal/modalDetail/';
 import MyModal from "../../../elements/modal/MyModal";
 
 const ExchangesModal = (props) => {
@@ -23,6 +23,8 @@ const ExchangesModal = (props) => {
       <Modal.Body>
         <Overview  data={data} />
         <Bindings name={props.exchangeName} />
+        <PublishMessage type='exchange' name={props.exchangeName} />
+        <Delete type='exchange' name={props.exchangeName} setShow={props.setShow} />
       </Modal.Body>
     </MyModal>
   );

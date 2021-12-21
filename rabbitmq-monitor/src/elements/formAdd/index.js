@@ -1,14 +1,16 @@
 import { useState } from "react";
-import AutoDelete from "./AutoDelete";
-import Durable from "./Durable";
-import './formAdd.css'
-import Name from "./Name";
-import Title from "./Title";
-import Type from "./Type";
-import Args from "./Args";
-import Notice from "./Notice";
-import Internal from "./Internal";
-import Submit from "./Submit";
+import { 
+  AutoDelete,
+  Durable,
+  InputText,
+  Title,
+  Type,
+  Notice,
+  Internal,
+  Submit,
+  InputJSON,
+  isJSON,
+} from "../form";
 import { putAPI } from "../../api";
 
 const FormAdd = (props) => {
@@ -21,19 +23,10 @@ const FormAdd = (props) => {
   const [displayFormAdd, setDisplayFormAdd] = useState(false);
   const [notice, setNotice] = useState('');
 
-  const isJson = (str) => {
-    try {
-      JSON.parse(str);
-    } catch (e) {
-      return false;
-    }
-    return true;
-  }
-
   const submit = async () => {
     if(name.length === 0) {
       setNotice('You need to type name');
-    } else if (!isJson(args) && args !== '') {
+    } else if (!isJSON(args) && args !== '') {
       setNotice('You need to type JSON in arguments');
     } else {
       try {
@@ -95,28 +88,28 @@ const FormAdd = (props) => {
       <Title setDisplayFormAdd={setDisplayFormAdd} displayFormAdd={displayFormAdd} typeAdd={props.typeAdd} />
       <div className="form-add-body" style={{ height: displayFormAdd ? 'fit-content' : 0 }}>
         {props.typeAdd === 'exchange' && <>
-          <Name name={name} setName={setName} />
+          <InputText name={'Name'} text={name} setText={setName} />
           <Type type={type} setType={setType} types={props.type} />
           <Durable durability={durability} setDurability={setDurability} />
           <AutoDelete autoDelete={autoDelete} setAutoDelete={setAutoDelete} title='If yes, the exchange will delete itself after at least one queue or exchange has been bound to this one, and then all queues or exchanges have been unbound.' />
           <Internal internal={internal} setInternal={setInternal} />
-          <Args args={args} setArgs={setArgs} />
+          <InputJSON args={args} setArgs={setArgs} name='Arguments' />
         </>}
         {props.typeAdd === 'queue' && <>
           <Type type={type} setType={setType} types={props.type} />
           {type === 'Classic' && <>
-            <Name name={name} setName={setName} />
+            <InputText name={'Name'} text={name} setText={setName} />
             <Durable durability={durability} setDurability={setDurability} />
             <AutoDelete autoDelete={autoDelete} setAutoDelete={setAutoDelete} title='If yes, the queue will delete itself after at least one consumer has connected, and then all consumers have disconnected.' />
-            <Args args={args} setArgs={setArgs} />
+            <InputJSON args={args} setArgs={setArgs} name='Arguments' />
           </>}
           {(type === 'Quorum' || type === 'Stream') && <>
-            <Name name={name} setName={setName} />
-            <Args args={args} setArgs={setArgs} />
+            <InputText name={'Name'} text={name} setText={setName} />
+            <InputJSON args={args} setArgs={setArgs} name='Arguments' />
           </>}
         </>}
         {notice.length > 0 && <Notice notice={notice} />} 
-        <Submit submit={submit} typeAdd={props.typeAdd} />
+        <Submit submit={submit} submitName={`Add ${props.typeAdd}`} />
       </div>
     </div>
   );

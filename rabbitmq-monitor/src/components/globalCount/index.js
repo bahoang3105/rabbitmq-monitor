@@ -141,7 +141,7 @@ const GlobalCount = (props) => {
         {checkShowDetail('Connection:') && <ConnectionsModal show={checkShowDetail('Connection:')} exchangeName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
         {checkShowDetail('Channel:') && <ChannelsModal show={checkShowDetail('Channel:')} exchangeName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
         {checkShowDetail('Exchange:') && <ExchangesModal show={checkShowDetail('Exchange:')} exchangeName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
-        {checkShowDetail('Queue:') && <QueuesModal show={checkShowDetail('Queue:')} exchangeName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
+        {checkShowDetail('Queue:') && <QueuesModal show={checkShowDetail('Queue:')} queueName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
       </>
     </div>
   );

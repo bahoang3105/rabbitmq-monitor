@@ -25,8 +25,8 @@ const ModalGlobalCount = (props) => {
           item.ssl === false ? 'o' : item.ssl,
           item.protocol,
           item.channels,
-          item.recv_oct_details.rate,
-          item.send_oct_details.rate 
+          item.recv_oct_details?.rate,
+          item.send_oct_details?.rate 
         ]));
         break;
       }
@@ -39,10 +39,10 @@ const ModalGlobalCount = (props) => {
           item.messages_unconfirmed,
           '',
           item.messages_unacknowledged,
-          item.message_stats.publish_details.rate + '/s',
-          item.message_stats.confirm_details.rate + '/s',
-          item.message_stats.drop_unroutable_details.rate + '/s',
-          item.message_stats.return_unroutable_details.rate + '/s'
+          item.message_stats.publish_details?.rate + '/s',
+          item.message_stats.confirm_details?.rate + '/s',
+          item.message_stats.drop_unroutable_details?.rate + '/s',
+          item.message_stats.return_unroutable_details?.rate + '/s'
         ]));
         break;
       }
@@ -51,8 +51,8 @@ const ModalGlobalCount = (props) => {
           item.name === "" ? '(AMQP default)' : item.name,
           item.type,
           '',
-          item.message_stats ? item.message_stats.publish_in_details.rate + '/s' : '',
-          item.message_stats ? item.message_stats.publish_out_details.rate + '/s' : '',
+          item.message_stats ? (item.message_stats.publish_in_details ? item.message_stats.publish_in_details.rate + '/s' : '') : '',
+          item.message_stats ? (item.message_stats.publish_out_details ? item.message_stats.publish_out_details.rate + '/s' : '') : '',
         ]));
         break;
       }
@@ -65,9 +65,9 @@ const ModalGlobalCount = (props) => {
           item.messages_ready,
           item.messages_unacknowledged,
           item.messages,
-          item.message_stats ? item.message_stats.publish_details.rate : '',
-          item.message_stats ? item.message_stats.deliver_get_details.rate : '',
-          item.message_stats? item.message_stats.ack_details.rate : ''
+          item.message_stats ? item.message_stats.publish_details?.rate : '',
+          item.message_stats ? item.message_stats.deliver_get_details?.rate : '',
+          item.message_stats? item.message_stats.ack_details?.rate : ''
         ]));
         break;
       }

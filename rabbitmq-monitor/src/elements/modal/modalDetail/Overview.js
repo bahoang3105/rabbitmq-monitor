@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
+import ArrowIcon from "./ArrowIcon";
 
 const Overview = (props) => {
 
   const [show, setShow] = useState(true);
   return (
-    <div className="modal-detail-overview">
+    <div className="modal-detail">
       <div className="modal-detail-part" onClick={() => setShow(!show)}>
+        <ArrowIcon show={show} />
         Overview
-        <div style={{ fontSize: 19, marginTop: 1 }}>{show ? <RiArrowUpSFill /> : <RiArrowDownSFill />}</div>
       </div>
-      <div className="modal-detail-overview-body" style={{ height: show ? 'fit-content' : 0 }}>
+      <div className="modal-detail-body" style={{ height: show ? 'fit-content' : 0 }}>
         <div>
           
         </div>
