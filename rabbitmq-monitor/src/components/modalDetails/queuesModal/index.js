@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { getAPI } from "../../../api";
-import { Delete, Overview } from "../../../elements/modal/modalDetail";
+import { Bindings, Delete, Overview, PublishMessage } from "../../../elements/modal/modalDetail";
 import MyModal from "../../../elements/modal/MyModal";
 
 const QueuesModal = (props) => {
@@ -21,6 +21,8 @@ const QueuesModal = (props) => {
     <MyModal show={props.show} setShow={props.setShow} typeModal={props.typeModal} getData={getData}>
       <Modal.Body>
         <Overview data={data} />
+        <Bindings type='queue' name={props.queueName} />
+        <PublishMessage type='queue' name={props.queueName}/>
         <Delete type='queue' name={props.queueName} setShow={props.setShow} />
       </Modal.Body>
     </MyModal>

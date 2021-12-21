@@ -32,3 +32,9 @@
 .delete-button:hover {
   background-color: rgb(46, 46, 46);
 }
+
+.bindings-body {
+  display: grid;
+  grid-template-columns: 40% 10% 40%;
+  column-gap: 5%;
+}

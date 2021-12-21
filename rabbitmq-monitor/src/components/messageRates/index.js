@@ -43,17 +43,18 @@ const MessageRates = ({ data, formatTime, ...props }) => {
         drop_unroutable_details, 
         return_unroutable_details
       } = message_stats;
+
       setMessageStats(messageStats => [
         ...messageStats.slice(1),
         {
           name: time,
-          publish: publish_details.rate,
-          publisherConfirm: confirm_details.rate,
-          deliverAuto: deliver_no_ack_details.rate,
-          deliverManual: deliver_details.rate, 
-          consumerAck: ack_details.rate,
-          unroutabelDrop: drop_unroutable_details.rate,
-          unroutabelReturn: return_unroutable_details.rate
+          publish: publish_details ? publish_details.rate : 0,
+          publisherConfirm: confirm_details ? confirm_details.rate : 0,
+          deliverAuto: deliver_no_ack_details ? deliver_no_ack_details.rate : 0,
+          deliverManual: deliver_details ? deliver_details.rate : 0, 
+          consumerAck: ack_details ? ack_details.rate : 0,
+          unroutabelDrop: drop_unroutable_details ? drop_unroutable_details.rate : 0,
+          unroutabelReturn: return_unroutable_details ? return_unroutable_details.rate : 0
         }
       ]);
     }

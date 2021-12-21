@@ -89,7 +89,7 @@ const ModalGlobalCount = (props) => {
         <div className='title-rename'>
           All {props.typeModal.toLowerCase()}({props.count})
         </div>
-        <div style={{ fontSize: 15 }}>
+        <div className='font-size-15'>
           <Table width='50vw' maxHeight='35vh'>
             <TableRow data={props.dataHeader[0]} />
             <TableHeader data={props.dataHeader[1]} />
