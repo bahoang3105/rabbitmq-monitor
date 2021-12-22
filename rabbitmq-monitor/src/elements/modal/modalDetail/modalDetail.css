@@ -53,3 +53,7 @@
 .unbind-button:hover {
   background-color: #535353;
 }
+
+.title-add-binding {
+  margin: 20px 0 10px 0;
+}

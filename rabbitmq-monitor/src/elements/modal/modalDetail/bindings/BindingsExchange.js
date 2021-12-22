@@ -43,10 +43,10 @@ const BindingsExchange = (props) => {
     <>
       <div className="bindings-body">
         <TableBindings type='From' name={props.name} data={destinations} isQueue={false} getData={getData} />
-        <div>This exchange</div>
+        <div style={{ margin: 'auto' }}>This exchange</div>
         <TableBindings type='To' name={props.name} data={sources} isQueue={false} getData={getData} />
       </div>
-      <div>Add binding from this exchange</div>
+      <div className="title-add-binding">Add binding from this exchange</div>
       <InputText 
         name={
           <select value={typeBindingAdd} onChange={e => setTypeBindingAdd(e.target.value)}>

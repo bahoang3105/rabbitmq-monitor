@@ -29,15 +29,15 @@ const TableBindings = (props) => {
 
 
   return (
-    <div style={{ margin: 10 }}>
+    <>
       {props.data.length > 0 ?
-        <Table width='100%' height='auto'>
+        <Table width='100%' height='auto' marginLeft={1}>
           <TableRow data={dataHeader} />
           {renderTableRow(data)}
         </Table> :
-        <div>no bindings...</div>  
+        <div style={{ margin: 'auto' }}>no bindings...</div>  
       }
-    </div>
+    </>
   );
 }
 

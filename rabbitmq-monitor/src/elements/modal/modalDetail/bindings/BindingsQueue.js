@@ -40,7 +40,7 @@ const BindingsQueue = (props) => {
         <TableBindings type='From' data={bindings} name={props.name} isQueue={true} getData={getData} />
         <div>This queue</div>
       </div>
-      <div>Add binding to this queue</div>
+      <div className="title-add-binding">Add binding to this queue</div>
       <InputText name = 'From exchange' text={bindingAdd} setText={setBindingAdd} />
       <InputText name='Routing key' text={routingKey} setText={setRoutingKey} />
       <InputJSON name='Arguments' args={args} setArgs={setArgs} />
