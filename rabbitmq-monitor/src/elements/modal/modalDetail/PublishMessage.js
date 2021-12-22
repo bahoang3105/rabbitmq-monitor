@@ -4,7 +4,6 @@ import { InputJSON, InputText, isJSON, Notice, Payload, Submit } from "../../for
 import ArrowIcon from "./ArrowIcon";
 
 const PublishMessage = (props) => {
-  const [show, setShow] = useState(false);
   const [headers, setHeaders] = useState('{\n\t\n}');
   const [properties, setProperties] = useState('{\n\t\n}');
   const [payload, setPayload] = useState('');
@@ -33,11 +32,11 @@ const PublishMessage = (props) => {
 
   return (
     <div className="modal-detail">
-      <div className="modal-detail-part" onClick={() => setShow(!show)}>
-        <ArrowIcon show={show} />
+      <div className="modal-detail-part" onClick={() => props.setShowMore(props.showMore === 'publish' ? '' : 'publish')}>
+        <ArrowIcon show={props.showMore === 'publish'} />
         Publish message
       </div>
-      <div className="modal-detail-body" style={{ height: show ? 'fit-content' : 0 }}>
+      <div className="modal-detail-body" style={{ height: props.showMore === 'publish' ? 'fit-content' : 0 }}>
         <div className="form-add-body font-size-15">
           {props.type === 'exchange' && <InputText name='Routing key' text={routingKey} setText={setRoutingKey} />}
           <InputJSON name='Headers' args={headers} setArgs={setHeaders} />

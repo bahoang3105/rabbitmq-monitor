@@ -23,10 +23,17 @@
   border-radius: 8px;
   background-color: white;
   width: 50vw;
+  max-height: 50vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
 }
 
 .x-close {
-  position: absolute;
+  position: fixed;
   color:rgb(151, 151, 151);
   font-size: 18px;
   border-radius: 100%;
@@ -37,7 +44,7 @@
 }
 
 .refresh {
-  position: absolute;
+  position: fixed;
   color:rgb(56, 92, 255);
   font-size: 17px;
   border-radius: 15px;

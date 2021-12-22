@@ -28,7 +28,7 @@ export const postAPI = async (url, dataBody, ...config) => {
     });
     return data;
   } catch (e) {
-    console.log(e);
+    return e;
   }
 }
 

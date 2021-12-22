@@ -233,3 +233,7 @@ td, th {
 .font-size-15 {
   font-size: 15px;
 }
+
+select {
+  outline: none;
+}

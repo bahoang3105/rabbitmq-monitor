@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { deleteAPI } from "../../../api";
 import ArrowIcon from "./ArrowIcon";
 
 const Delete = (props) => {
-  const [show, setShow] = useState(false);
 
   const delElement = async () => {
     if(window.confirm('Are you sure? This object cannot be recovered after deletion.')) {
@@ -14,11 +12,11 @@ const Delete = (props) => {
 
   return (
     <div className="modal-detail">
-      <div className="modal-detail-part" onClick={() => setShow(!show)}>
-        <ArrowIcon show={show} />
+      <div className="modal-detail-part" onClick={() => props.setShowMore(props.showMore === 'delete' ? '' : 'delete')}>
+        <ArrowIcon show={props.showMore === 'delete'} />
         Delete this {props.type}
       </div>
-      <div className="modal-detail-body" style={{ height: show ? 'fit-content' : 0 }}>
+      <div className="modal-detail-body" style={{ height: props.showMore === 'delete' ? 'fit-content' : 0 }}>
         <div className="delete-button" onClick={delElement}>
           Delete
         </div>

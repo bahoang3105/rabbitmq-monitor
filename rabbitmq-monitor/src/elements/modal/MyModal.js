@@ -5,15 +5,19 @@ import { FiRefreshCw } from 'react-icons/fi';
 const MyModal = (props) => {
 
   const [refreshState, setRefreshState] = useState('');
+  const [refreshIcon, setRefreshIcon] = useState('');
 
   const refresh = async () => {
     // do not allow continuous refreshing
     if(refreshState !== ' refreshing') {
       setRefreshState(' refreshing');
+      setRefreshIcon(' refreshing');
       setTimeout(() => {
         setRefreshState('');
+      }, 10);
+      setTimeout(() => {
+        setRefreshIcon('');
       }, 2000);
-      await props.getData();
     }
   }
 
@@ -26,13 +30,13 @@ const MyModal = (props) => {
     >
       <div className='border-modal'>
         <Modal.Header>
-          <FiRefreshCw className={`refresh${refreshState}`} title='Refresh' onClick={refresh}/>
+          <FiRefreshCw className={`refresh${refreshIcon}`} title='Refresh' onClick={refresh}/>
           <span className='x-close' onClick={() => props.setShow(false)}>x</span>
           <Modal.Title>
             {props.typeModal}
           </Modal.Title>
         </Modal.Header>
-        {props.children}
+        {refreshState === '' && props.children}
       </div>
     </Modal>
   );

@@ -7,6 +7,7 @@ import MyModal from "../../../elements/modal/MyModal";
 
 const QueuesModal = (props) => {
   const [data, setData] = useState();
+  const [showMore, setShowMore] = useState('overview');
 
   const getData = async () => {
     const data = await getAPI('/queues/%2F/' + props.queueName);
@@ -20,10 +21,10 @@ const QueuesModal = (props) => {
   return (
     <MyModal show={props.show} setShow={props.setShow} typeModal={props.typeModal} getData={getData}>
       <Modal.Body>
-        <Overview data={data} />
-        <Bindings type='queue' name={props.queueName} />
-        <PublishMessage type='queue' name={props.queueName}/>
-        <Delete type='queue' name={props.queueName} setShow={props.setShow} />
+        <Overview data={data} showMore={showMore} setShowMore={setShowMore} />
+        <Bindings type='queue' name={props.queueName} showMore={showMore} setShowMore={setShowMore} />
+        <PublishMessage type='queue' name={props.queueName} showMore={showMore} setShowMore={setShowMore} />
+        <Delete type='queue' name={props.queueName} setShow={props.setShow} showMore={showMore} setShowMore={setShowMore} />
       </Modal.Body>
     </MyModal>
   );
