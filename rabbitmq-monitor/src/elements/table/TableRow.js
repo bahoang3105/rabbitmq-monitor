@@ -1,7 +1,11 @@
 const TableRow = (props) => {
 
   const changeModalDetail = () => {
-    props.setShow(props.typeModal.substring(0, props.typeModal.length - 1) + ': ' + props.name);
+    if(props.hostName) {
+      props.setShow(props.typeModal.substring(0, props.typeModal.length - 1) + ': ' + props.name + ' -> ' + props.hostName);
+    } else {
+      props.setShow(props.typeModal.substring(0, props.typeModal.length - 1) + ': ' + props.name);
+    }
   }
 
   return (

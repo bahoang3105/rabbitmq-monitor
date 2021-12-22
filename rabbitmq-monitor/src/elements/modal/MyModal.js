@@ -9,7 +9,7 @@ const MyModal = (props) => {
 
   const refresh = async () => {
     // do not allow continuous refreshing
-    if(refreshState !== ' refreshing') {
+    if(refreshIcon !== ' refreshing') {
       setRefreshState(' refreshing');
       setRefreshIcon(' refreshing');
       setTimeout(() => {

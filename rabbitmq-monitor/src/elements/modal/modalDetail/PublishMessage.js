@@ -36,7 +36,7 @@ const PublishMessage = (props) => {
         <ArrowIcon show={props.showMore === 'publish'} />
         Publish message
       </div>
-      <div className="modal-detail-body" style={{ height: props.showMore === 'publish' ? 'fit-content' : 0 }}>
+      <div className="modal-detail-body font-size-14" style={{ height: props.showMore === 'publish' ? 'fit-content' : 0 }}>
         <div className="form-add-body font-size-15">
           {props.type === 'exchange' && <InputText name='Routing key' text={routingKey} setText={setRoutingKey} />}
           <InputJSON name='Headers' args={headers} setArgs={setHeaders} />

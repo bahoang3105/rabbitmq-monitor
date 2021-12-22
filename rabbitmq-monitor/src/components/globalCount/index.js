@@ -86,7 +86,7 @@ const GlobalCount = (props) => {
     return showedModal ? showedModal.split(' ')[0] === str : false;
   } 
 
-  const showedModalName = showedModal ? showedModal.split(' ')[1] : '';
+  const showedModalName = showedModal ? showedModal.split(' ').slice(1).join(' ') : '';
 
   useEffect(() => {
     if(props.data) {
@@ -138,8 +138,8 @@ const GlobalCount = (props) => {
         </ModalGlobalCount>
       </>
       <>
-        {checkShowDetail('Connection:') && <ConnectionsModal show={checkShowDetail('Connection:')} exchangeName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
-        {checkShowDetail('Channel:') && <ChannelsModal show={checkShowDetail('Channel:')} exchangeName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
+        {checkShowDetail('Connection:') && <ConnectionsModal show={checkShowDetail('Connection:')} connectionName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
+        {checkShowDetail('Channel:') && <ChannelsModal show={checkShowDetail('Channel:')} channelName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
         {checkShowDetail('Exchange:') && <ExchangesModal show={checkShowDetail('Exchange:')} exchangeName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
         {checkShowDetail('Queue:') && <QueuesModal show={checkShowDetail('Queue:')} queueName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
       </>

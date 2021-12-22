@@ -13,6 +13,7 @@ const ModalGlobalCount = (props) => {
   const itemPerPage = 5;
   const [page, setPage] = useState(1);
   const [data, setData] = useState();
+  const [hostName, setHostName] = useState('');
 
   const getData = async () => {
     const data = await getAPI(`/${props.typeModal.toLowerCase()}?page=${page}&page_size=${itemPerPage}&name=&use_regex=false`);
@@ -26,13 +27,14 @@ const ModalGlobalCount = (props) => {
           item.protocol,
           item.channels,
           item.recv_oct_details?.rate,
-          item.send_oct_details?.rate 
+          item.send_oct_details?.rate,
         ]));
+        setHostName(data.items.map(item => `${item.host}:${item.port}`));
         break;
       }
       case 'Channels': {
         setData(data.items.map(item => [
-          `${item.connection_details.peer_host}:${item.connection_details.peer_port}`,
+          item.name,
           item.user,
           '',
           item.state,
@@ -91,9 +93,9 @@ const ModalGlobalCount = (props) => {
         </div>
         <div className='font-size-15'>
           <Table width='50vw' maxHeight='35vh'>
-            <TableRow data={props.dataHeader[0]} />
+            <TableRow data={props.dataHeader[0]}/>
             <TableHeader data={props.dataHeader[1]} />
-            {data && data.map((item, index) => (<TableRow key={index} name={item[0]} typeModal={props.typeModal} data={item.slice(1)} setShow={props.setShow} style={{ backgroundColor: index % 2 ? '' : '#d6d6d6' }} last={index === data.length - 1} />))}
+            {data && data.map((item, index) => (<TableRow key={index} name={item[0]} hostName={hostName[index]} typeModal={props.typeModal} data={item.slice(1)} setShow={props.setShow} style={{ backgroundColor: index % 2 ? '' : '#d6d6d6' }} last={index === data.length - 1} />))}
           </Table>
         </div>
         {props.children}

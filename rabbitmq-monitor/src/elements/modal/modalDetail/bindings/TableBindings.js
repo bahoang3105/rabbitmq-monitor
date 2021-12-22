@@ -31,11 +31,11 @@ const TableBindings = (props) => {
   return (
     <>
       {props.data.length > 0 ?
-        <Table width='100%' height='auto' marginLeft={1}>
+        <Table width='18vw' height='auto' marginLeft={1} marginTop={1}>
           <TableRow data={dataHeader} />
           {renderTableRow(data)}
         </Table> :
-        <div style={{ margin: 'auto' }}>no bindings...</div>  
+        <div className="align-middle">no bindings...</div>  
       }
     </>
   );

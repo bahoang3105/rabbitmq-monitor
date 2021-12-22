@@ -35,9 +35,13 @@
 }
 
 .bindings-body {
-  display: grid;
-  grid-template-columns: 40% 10% 40%;
-  column-gap: 5%;
+  display: flex;
+  column-gap: 15px;
+}
+
+.align-middle {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .unbind-button {
@@ -56,4 +60,30 @@
 
 .title-add-binding {
   margin: 20px 0 10px 0;
+}
+
+.overview-detail {
+  display: grid;
+  grid-template-columns: 150px auto;
+  color:#3f3f3f;
+  margin-left: 10px;
+}
+
+.overview-body-part {
+  margin: 10px 0 5px 0;
+}
+
+.form-close {
+  border: 1px solid #868686;
+  border-radius: 5px;
+  padding: 8px;
+  width: fit-content;
+  background-color: #838383;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.form-close:hover {
+  background-color: #494949;
 }

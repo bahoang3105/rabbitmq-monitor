@@ -10,7 +10,7 @@ const Bindings = (props) => {
         <ArrowIcon show={props.showMore === 'binding'} />
         Bindings
       </div>
-      <div className="modal-detail-body font-size-15" style={{ height: props.showMore === 'binding' ? 'fit-content' : 0 }}>
+      <div className="modal-detail-body font-size-14" style={{ height: props.showMore === 'binding' ? 'fit-content' : 0 }}>
         {props.type === 'exchange' ? 
           <BindingsExchange name={props.name} /> : <BindingsQueue name={props.name} />}
       </div>

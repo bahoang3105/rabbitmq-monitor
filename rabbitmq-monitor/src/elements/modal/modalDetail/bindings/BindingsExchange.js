@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAPI, postAPI } from "../../../../api";
 import { InputText, InputJSON, Submit, Notice } from "../../../form";
 import TableBindings from "./TableBindings";
+import { ImArrowRight } from 'react-icons/im';
 
 const BindingsExchange = (props) => {
 
@@ -43,7 +44,11 @@ const BindingsExchange = (props) => {
     <>
       <div className="bindings-body">
         <TableBindings type='From' name={props.name} data={destinations} isQueue={false} getData={getData} />
-        <div style={{ margin: 'auto' }}>This exchange</div>
+        <ImArrowRight className='align-middle' style={{ fontSize: 25, color: 'rgb(100, 100, 100)' }} />
+        <div className='align-middle' style={{ border: '1px solid rgb(180, 180, 180)', padding: 8, borderRadius: 10 }}>
+          This exchange
+        </div>
+        <ImArrowRight className='align-middle' style={{ fontSize: 25, color: 'rgb(100, 100, 100)' }} />
         <TableBindings type='To' name={props.name} data={sources} isQueue={false} getData={getData} />
       </div>
       <div className="title-add-binding">Add binding from this exchange</div>
