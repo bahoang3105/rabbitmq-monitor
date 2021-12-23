@@ -13,7 +13,7 @@ export const getAPI = async (url, ...config) => {
     });
     return data;
   } catch (e) {
-    console.log(e)
+    console.error(e)
   }
 }
 
@@ -43,7 +43,7 @@ export const putAPI = async (url, dataBody, ...config) => {
     });
     return data;
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }
 
@@ -58,6 +58,6 @@ export const deleteAPI = async (url, ...config) => {
     });
     return data;
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }

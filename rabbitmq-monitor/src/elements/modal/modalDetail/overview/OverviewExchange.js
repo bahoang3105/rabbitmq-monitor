@@ -1,7 +1,6 @@
 import ArrowIcon from "../ArrowIcon";
 
 const OverviewExchange = (props) => {
-  console.log(props.data)
   return (
     <div className="modal-detail">
       <div className="modal-detail-part" onClick={() => props.setShowMore(props.showMore === 'overview' ? '' : 'overview')}>

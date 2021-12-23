@@ -57,6 +57,7 @@ const App = () => {
           data={data} 
           height={height} 
           width={width}
+          getData={getData}
         />
     </div>
   );

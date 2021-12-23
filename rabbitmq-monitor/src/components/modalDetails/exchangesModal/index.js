@@ -25,7 +25,7 @@ const ExchangesModal = (props) => {
         <OverviewExchange  data={data} showMore={showMore} setShowMore={setShowMore} name={props.exchangeName} />
         <Bindings type='exchange' name={props.exchangeName} showMore={showMore} setShowMore={setShowMore} />
         <PublishMessage type='exchange' name={props.exchangeName} showMore={showMore} setShowMore={setShowMore} />
-        <Delete type='exchange' name={props.exchangeName} setShow={props.setShow} showMore={showMore} setShowMore={setShowMore} />
+        <Delete type='exchange' name={props.exchangeName} setShow={props.setShow} showMore={showMore} setShowMore={setShowMore} getData={props.getData} />
       </Modal.Body>
     </MyModal>
   );

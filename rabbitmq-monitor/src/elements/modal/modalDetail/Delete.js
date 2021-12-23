@@ -7,6 +7,7 @@ const Delete = (props) => {
     if(window.confirm('Are you sure? This object cannot be recovered after deletion.')) {
       await deleteAPI('/' + props.type + 's/%2F/' + props.name);
       props.setShow(false);
+      props.getData();
     }
   }
 

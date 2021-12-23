@@ -64,9 +64,10 @@
 
 .overview-detail {
   display: grid;
-  grid-template-columns: 150px auto;
+  grid-template-columns: 120px auto;
   color:#3f3f3f;
   margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 .overview-body-part {
@@ -86,4 +87,31 @@
 
 .form-close:hover {
   background-color: #494949;
+}
+
+.overview-detail-connection {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.capabilities {
+  display: grid;
+  grid-template-columns: 200px auto;
+  column-gap: 5px;
+  margin-bottom: 5px;
+}
+
+.capability {
+  text-align: right;
+}
+
+.client-properties-detail {
+  display: grid;
+  grid-template-columns: 90px auto;
+  column-gap: 50px;
+}
+
+.client-property {
+  border-right: 1px solid #838383;
+  padding-bottom: 10px;
 }

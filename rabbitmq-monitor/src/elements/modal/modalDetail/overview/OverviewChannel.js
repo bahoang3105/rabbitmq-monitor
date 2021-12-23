@@ -1,7 +1,6 @@
 import ArrowIcon from "../ArrowIcon";
 
 const OverviewChannel = (props) => {
-  console.log(props.data)
   return (
     <div className="modal-detail">
       <div className="modal-detail-part" onClick={() => props.setShowMore(props.showMore === 'overview' ? '' : 'overview')}>
@@ -11,25 +10,37 @@ const OverviewChannel = (props) => {
       <div className="modal-detail-body font-size-14" style={{ height: props.showMore === 'overview' ? 'fit-content' : 0 }}>
         <div className="overview-body-part font-size-15">Message rates</div>
         <div className="overview-detail">
-          <div>Message rates in</div>
-          <div>{props.data?.message_stats?.publish_in_details?.rate ? props.data.message_stats?.publish_in_details?.rate + '/s' : '0.0/s'}</div>
+          <div>Publish</div>
+          <div>{props.data?.message_stats?.publish_details?.rate ? props.data.message_stats?.publish_details?.rate + '/s' : '0.00/s'}</div>
         </div>
         <div className="overview-detail">
-          <div>Message rates out</div>
-          <div>{props.data?.message_stats?.publish_out_details?.rate ? props.data.message_stats?.publish_out_details?.rate + '/s' : '0.0/s'}</div>
+          <div>Publisher confirm</div>
+          <div>{props.data?.message_stats?.confirm_details?.rate ? props.data.message_stats?.confirm_details?.rate + '/s' : '0.00/s'}</div>
+        </div>
+        <div className="overview-detail">
+          <div>Unroutable (return)</div>
+          <div>{props.data?.message_stats?.return_unroutable?.rate ? props.data.message_stats?.return_unroutable_details?.rate + '/s' : '0.00/s'}</div>
+        </div>
+        <div className="overview-detail">
+          <div>Unroutabel (drop)</div>
+          <div>{props.data?.message_stats?.drop_unroutable_details?.rate ? props.data.message_stats?.drop_unroutable_details?.rate + '/s' : '0.00/s'}</div>
         </div>
         <div className="overview-body-part font-size-15">Details</div>
         <div className="overview-detail">
-          <div>Type</div>
-          <div>{props.data.type}</div>
+          <div>Connection</div>
+          <div>{props.data?.connection_details?.peer_host}:{props.data?.connection_details?.peer_port}</div>
         </div>
         <div className="overview-detail">
-          <div>Durable</div>
-          <div>{props.data.durable ? 'true' : 'false'}</div>
+          <div>Username</div>
+          <div>{props.data.user_who_performed_action}</div>
         </div>
         <div className="overview-detail">
-          <div>Auto delete</div>
-          <div>{props.data.auto_delete ? 'true' : 'false'}</div>
+          <div>Mode</div>
+          <div></div>
+        </div>
+        <div className="overview-detail">
+          <div>State</div>
+          <div>{props.data.state}</div>
         </div>
       </div>
     </div>

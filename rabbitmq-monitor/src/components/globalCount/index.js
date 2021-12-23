@@ -138,10 +138,10 @@ const GlobalCount = (props) => {
         </ModalGlobalCount>
       </>
       <>
-        {checkShowDetail('Connection:') && <ConnectionsModal show={checkShowDetail('Connection:')} connectionName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
-        {checkShowDetail('Channel:') && <ChannelsModal show={checkShowDetail('Channel:')} channelName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
-        {checkShowDetail('Exchange:') && <ExchangesModal show={checkShowDetail('Exchange:')} exchangeName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
-        {checkShowDetail('Queue:') && <QueuesModal show={checkShowDetail('Queue:')} queueName={showedModalName} setShow={setShowedModal} typeModal={showedModal} />}
+        {checkShowDetail('Connection:') && <ConnectionsModal show={checkShowDetail('Connection:')} connectionName={showedModalName} setShow={setShowedModal} typeModal={showedModal} getData={props.getData} />}
+        {checkShowDetail('Channel:') && <ChannelsModal show={checkShowDetail('Channel:')} channelName={showedModalName} setShow={setShowedModal} typeModal={showedModal} getData={props.getData} />}
+        {checkShowDetail('Exchange:') && <ExchangesModal show={checkShowDetail('Exchange:')} exchangeName={showedModalName} setShow={setShowedModal} typeModal={showedModal} getData={props.getData} />}
+        {checkShowDetail('Queue:') && <QueuesModal show={checkShowDetail('Queue:')} queueName={showedModalName} setShow={setShowedModal} typeModal={showedModal} getData={props.getData} />}
       </>
     </div>
   );

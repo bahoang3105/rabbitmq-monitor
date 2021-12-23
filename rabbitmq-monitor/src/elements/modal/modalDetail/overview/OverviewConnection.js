@@ -1,7 +1,7 @@
 import ArrowIcon from "../ArrowIcon";
 
 const OverviewConnection = (props) => {
-  console.log(props.data)
+
   return (
     <div className="modal-detail">
       <div className="modal-detail-part" onClick={() => props.setShowMore(props.showMore === 'overview' ? '' : 'overview')}>
@@ -9,27 +9,53 @@ const OverviewConnection = (props) => {
         Overview
       </div>
       <div className="modal-detail-body font-size-14" style={{ height: props.showMore === 'overview' ? 'fit-content' : 0 }}>
-        <div className="overview-body-part font-size-15">Message rates</div>
+        <div className="overview-body-part font-size-15">Data rates</div>
         <div className="overview-detail">
-          <div>Message rates in</div>
-          <div>{props.data?.message_stats?.publish_in_details?.rate ? props.data.message_stats?.publish_in_details?.rate + '/s' : '0.0/s'}</div>
+          <div>From client</div>
+          <div>{props.data?.recv_oct_details?.rate ? props.data.recv_oct_details?.rate + ' iB/s' : '0.0 iB/s'}</div>
         </div>
         <div className="overview-detail">
-          <div>Message rates out</div>
-          <div>{props.data?.message_stats?.publish_out_details?.rate ? props.data.message_stats?.publish_out_details?.rate + '/s' : '0.0/s'}</div>
+          <div>To client</div>
+          <div>{props.data?.send_oct_details?.rate ? props.data.send_oct_details?.rate + ' iB/s' : '0.0 iB/s'}</div>
         </div>
         <div className="overview-body-part font-size-15">Details</div>
-        <div className="overview-detail">
-          <div>Type</div>
-          <div>{props.data.type}</div>
-        </div>
-        <div className="overview-detail">
-          <div>Durable</div>
-          <div>{props.data.durable ? 'true' : 'false'}</div>
-        </div>
-        <div className="overview-detail">
-          <div>Auto delete</div>
-          <div>{props.data.auto_delete ? 'true' : 'false'}</div>
+        <div className="overview-detail-connection">
+          <div>
+            <div className="overview-detail">
+              <div>Username</div>
+              <div>{props.data.user_who_performed_action}</div>
+            </div>
+            <div className="overview-detail">
+              <div>Protocol</div>
+              <div>{props.data.protocol}</div>
+            </div>
+            <div className="overview-detail">
+              <div>Connect at</div>
+              <div>{new Date(parseInt(props.data.connected_at)).toLocaleString()}</div>
+            </div>
+            <div className="overview-detail">
+              <div>Authentication</div>
+              <div>{props.data.auth_mechanism}</div>
+            </div>
+          </div>
+          <div>
+            <div className="overview-detail">
+              <div>State</div>
+              <div>{props.data.state}</div>
+            </div>
+            <div className="overview-detail">
+              <div>Heartbeat</div>
+              <div>{props.data.timeout}s</div>
+            </div>
+            <div className="overview-detail">
+              <div>Frame max</div>
+              <div>{props.data.frame_max} bytes</div>
+            </div>
+            <div className="overview-detail">
+              <div>Channel limit</div>
+              <div>{props.data.channel_max} channels</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

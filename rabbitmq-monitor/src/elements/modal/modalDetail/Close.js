@@ -7,7 +7,7 @@ const Close = (props) => {
     <div className="modal-detail">
       <div className="modal-detail-part" onClick={() => props.setShowMore(props.showMore === 'delete' ? '' : 'delete')}>
         <ArrowIcon show={props.showMore === 'delete'} />
-        Delete this {props.type}
+        Close this {props.type}
       </div>
       <div className="modal-detail-body font-size-14" style={{ height: props.showMore === 'delete' ? 'fit-content' : 0 }}>
         <InputText name={props.name} text={props.text} setText={props.setText} />

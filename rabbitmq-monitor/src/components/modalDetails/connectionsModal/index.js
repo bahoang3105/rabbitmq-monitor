@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Modal from 'react-bootstrap/Modal';
 import { deleteAPI, getAPI } from "../../../api";
 import { Close, OverviewConnection } from "../../../elements/modal/modalDetail";
+import ClientProperties from "../../../elements/modal/modalDetail/ClientProperties";
 import MyModal from "../../../elements/modal/MyModal";
 
 const ConnectionsModal = (props) => {
@@ -24,8 +25,9 @@ const ConnectionsModal = (props) => {
 
   const close = async () => {
     if(window.confirm('Are you sure? This object cannot be recovered after deletion.')) {
-      await deleteAPI('/' + props.type + 's/%2F/' + props.name);
+      await deleteAPI('/connections/' + connectionName);
       props.setShow(false);
+      props.getData();
     }
   }
 
@@ -33,7 +35,8 @@ const ConnectionsModal = (props) => {
     <MyModal show={props.show} setShow={props.setShow} typeModal={props.typeModal} getData={getData}>
       <Modal.Body>
         <OverviewConnection data={data} showMore={showMore} setShowMore={setShowMore} name={connectionName} />
-        <Close close={close} name='Reason' text={text} setText={setText} closeName='Force Close' showMore={showMore} setShowMore={setShowMore} />
+        <ClientProperties data={data.client_properties} showMore={showMore} setShowMore={setShowMore} name={connectionName} />
+        <Close close={close} name='Reason' text={text} setText={setText} closeName='Force Close' showMore={showMore} setShowMore={setShowMore} type='connection' />
       </Modal.Body>
     </MyModal>
   );

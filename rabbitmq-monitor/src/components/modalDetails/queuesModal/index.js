@@ -24,7 +24,7 @@ const QueuesModal = (props) => {
         <OverviewQueue data={data} showMore={showMore} setShowMore={setShowMore} />
         <Bindings type='queue' name={props.queueName} showMore={showMore} setShowMore={setShowMore} />
         <PublishMessage type='queue' name={props.queueName} showMore={showMore} setShowMore={setShowMore} />
-        <Delete type='queue' name={props.queueName} setShow={props.setShow} showMore={showMore} setShowMore={setShowMore} />
+        <Delete type='queue' name={props.queueName} setShow={props.setShow} showMore={showMore} setShowMore={setShowMore} getData={props.getData} />
       </Modal.Body>
     </MyModal>
   );
